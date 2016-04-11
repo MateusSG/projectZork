@@ -7,9 +7,7 @@
 
 using namespace std;
 
-
-
-//void RoomSetup(environment*);
+string StrTokenizer(string action, string& a1, string& a2);
 
 // Actions:
 // USE, GIVE, ATTACK, GO, PICK, SEARCH, COMBINE
@@ -46,19 +44,6 @@ int main()
 	roomPtr[4]->SetItem(table, pen);
 
 
-	// String Tokenizer
-	char str[] = "EAT APPLE";
-	char * pch;
-
-	cout << "Splitting string " << str << "into tokens :" << endl;
-
-	pch = strtok(str, " ");
-
-	while (pch != NULL)
-	{
-		cout << pch << endl;
-		pch = strtok(NULL, " ");
-	}
 
 	// MAIN PROGRAM
 
@@ -66,6 +51,8 @@ int main()
 
 	cout << "Intro: " << "You are in a dark room. You see a shiny LIGHTER on the floor next to you." << endl;
 	cin >> userInput;
+
+	userInput = toupper(userInput); // FIX THIS
 
 	// END OF MAIN PROGRAM
 
@@ -75,12 +62,24 @@ int main()
 	return 0;
 }
 
-/*
-void RoomSetup(environment* ptr)
-{
-	
 
-	ptr->SetItem(apple, chair);
-	
+string StrTokenizer(string action, string& a1, string& a2) // String Tokenizer
+{
+	char str[] = action.c_str;
+	char * pch;
+	int i = 0;
+	//cout << "Splitting string " << str << "into tokens :" << endl;
+
+	pch = strtok(str, " ");
+
+	while (pch != NULL)
+	{
+		//cout << pch << endl;
+		if (i == 0)
+			a1 = pch;
+		else
+			a2 = pch;
+		pch = strtok(NULL, " ");
+		i++;
+	}
 }
-*/
